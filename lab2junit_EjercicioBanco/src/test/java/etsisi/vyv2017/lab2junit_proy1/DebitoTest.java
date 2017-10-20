@@ -36,7 +36,20 @@ public class DebitoTest extends TestCase {
 
 	@Test
 	public void testRetirar1000() {
-		//TODO		
-	}
+		//TODO
+		try {
+			double saldoAnteriorCuenta = cuenta.getSaldo();
+			double saldoAnteriorDebito = debito.getSaldo();
+			
+			debito.retirar(1000.0);
 
+			double saldoActualCuenta = cuenta.getSaldo();
+			double saldoActualDebito = debito.getSaldo();
+
+			assertTrue(saldoActualCuenta == saldoAnteriorCuenta - 1000.0);
+			assertTrue(saldoActualDebito == saldoAnteriorDebito - 1000.0);
+		} catch (Exception e) {
+			fail("Salta excepcion - No deberia haber fallado");
+		}
+	}
 }

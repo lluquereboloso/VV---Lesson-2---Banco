@@ -48,8 +48,8 @@ public class CreditoTest extends TestCase {
 			double saldoActualTarjeta = tarjeta.getSaldo();
 			double creditoActual = tarjeta.getCreditoDisponible();
 
-			assertTrue(saldoActualCuenta == saldoAnteriorCuenta + 500);
-			assertTrue(saldoActualTarjeta == saldoAnteriorTarjeta);
+			assertTrue(saldoActualCuenta == saldoAnteriorCuenta + 500.0);
+			assertTrue(saldoActualTarjeta == saldoAnteriorTarjeta + 500.0);
 			assertTrue(creditoActual == creditoAnterior);
 		} catch (Exception e) {
 			fail("Salta excepcion - No deberia haber fallado");
@@ -59,6 +59,7 @@ public class CreditoTest extends TestCase {
 	@Test
 	public void testRetirar300() {
 		// TODO
+		
 	}
 
 	@Test
