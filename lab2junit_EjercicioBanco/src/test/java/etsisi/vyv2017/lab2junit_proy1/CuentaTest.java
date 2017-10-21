@@ -35,6 +35,14 @@ public class CuentaTest extends TestCase {
 	@Test
 	public void testRetirar1000() {
 		//TODO
+		testIngresar1000();
+		try {
+			cuenta.retirar(1000.0);
+			assertTrue(cuenta.getSaldo() == 0.0);
+		} catch (Exception e) {
+			fail("No deberia haber fallado");
+		}
+		
 	}
 
 	@Test

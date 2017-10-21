@@ -50,7 +50,7 @@ public class CreditoTest extends TestCase {
 
 			assertTrue(saldoActualCuenta == saldoAnteriorCuenta + 500.0);
 			assertTrue(saldoActualTarjeta == saldoAnteriorTarjeta + 500.0);
-			assertTrue(creditoActual == creditoAnterior);
+			assertTrue(creditoActual == creditoAnterior - 500.0);
 		} catch (Exception e) {
 			fail("Salta excepcion - No deberia haber fallado");
 		}
@@ -59,7 +59,26 @@ public class CreditoTest extends TestCase {
 	@Test
 	public void testRetirar300() {
 		// TODO
-		
+		try {
+			double saldoAnteriorCuenta = cuenta.getSaldo();
+			double saldoAnteriorTarjeta = tarjeta.getSaldo();
+			double creditoAnterior = tarjeta.getCreditoDisponible();
+
+			tarjeta.retirar(300.0);
+
+			double saldoActualCuenta = cuenta.getSaldo();
+			double saldoActualTarjeta = tarjeta.getSaldo();
+			double creditoActual = tarjeta.getCreditoDisponible();
+
+			double importe = 300.0;
+			double comision = importe * 0.05;
+			double total = 300.0 + comision;
+			assertTrue(saldoActualCuenta == saldoAnteriorCuenta - total);
+			assertTrue(saldoActualTarjeta == saldoAnteriorTarjeta + total);
+			assertTrue(creditoActual == creditoAnterior - total);
+		} catch (Exception e) {
+			fail("Salta excepcion - No deberia haber fallado");
+		}
 	}
 
 	@Test

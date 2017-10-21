@@ -16,11 +16,12 @@ public class Credito extends Tarjeta {
 	public void retirar(double x) throws Exception {
 		Movimiento m = new Movimiento();
 		m.setConcepto("Retirada en cuenta asociada (cajero automático)");
-		x=(x*0.05<3.0 ? 3 : x*0.05); // Añadimos una comisión de un 5%, mínimo de 3 euros.
-		m.setImporte(x);
+		//x=(x*0.05<3.0 ? 3 : x*0.05); // Añadimos una comisión de un 5%, mínimo de 3 euros.
+		//m.setImporte(x);
 		double comision = (x * 0.05 < 3.0 ? 3 : x * 0.05); // Añadimos una comisión de un 5%, mínimo de 3 euros.
 		m.setImporte(x + comision);
 		mMovimientos.addElement(m);
+		mCuentaAsociada.retirar(x + comision);
 		if (x > getCreditoDisponible())
 			throw new Exception("Crédito insuficiente");
 	}
